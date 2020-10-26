@@ -17,4 +17,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.use(function (req, res, next) {
+    const accept = req.accepts('html', 'json', 'xml');
+    if (accept !== 'html') {
+        return next();
+    }
+    const ext = path.extname(req.path);
+    if (ext !== '') {
+        return next();
+    }
+    return res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 module.exports = app;
