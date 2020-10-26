@@ -24,7 +24,10 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-deploy": "git subtree push --prefix server heroku master",
+    "heroku-local": "cd server && heroku local",
+    "heroku-open": "heroku open"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1002.0",
